@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { CreateUserDto } from './dto/dtos';
+import { StudyService } from './study.service';
 
 export class StudyDto {
   name: string;
@@ -21,6 +22,8 @@ export class StudyDto {
 
 @Controller('study')
 export class StudyController {
+  constructor(private studyService: StudyService) {}
+
   @Get('get')
   getHelp(
     @Res() res: Response,
@@ -42,17 +45,20 @@ export class StudyController {
   }
 
   @Post('user')
-  createUser(@Body() dto: CreateUserDto, @Res() res: Response) {
+  async createUser(@Body() dto: CreateUserDto, @Res() res: Response) {
+    const user = await this.studyService.createUser(dto);
+
     res.status(HttpStatus.OK).json({
-      dto: dto,
+      user,
     });
   }
 
-  @Get('one/:id')
-  findOne(@Param('id') id: number, @Res() res: Response) {
-    console.log(id);
+  @Get('user/:id')
+  async findOne(@Param('id') id: number, @Res() res: Response) {
+    const user = await this.studyService.findOne(id);
+
     res.status(HttpStatus.OK).json({
-      id: id,
+      user,
     });
   }
 }
