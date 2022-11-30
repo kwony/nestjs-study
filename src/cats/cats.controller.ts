@@ -15,16 +15,21 @@ import {
   CreateCatDto,
   ListAllEntities,
   UpdateCatDto,
-} from 'src/dto/CreateCatDto';
+} from 'src/cats/dto/CreateCatDto';
+import { CatsService } from './cats.service';
 
-@Controller('cats-controller')
+@Controller('cats')
 export class CatsController {
+  constructor(private catsService: CatsService) {}
+
   /**
    * validation pipe 을 이용하면 CreateCatDto에서 넘어오지 않은것도 정리할 수 있다고 한다.
    * https://docs.nestjs.com/techniques/validation#stripping-properties
    * */
   @Post()
   create(@Res() res: Response, @Body() createCatDto: CreateCatDto) {
+    console.log(createCatDto);
+    this.catsService.create(createCatDto);
     res.status(HttpStatus.CREATED).send();
   }
 
