@@ -10,6 +10,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { CreateUserDto } from './dto/dtos';
 
 export class StudyDto {
   name: string;
@@ -34,6 +35,13 @@ export class StudyController {
 
   @Post('post')
   create(@Body() dto: StudyDto, @Res() res: Response) {
+    res.status(HttpStatus.OK).json({
+      dto: dto,
+    });
+  }
+
+  @Post('user')
+  createUser(@Body() dto: CreateUserDto, @Res() res: Response) {
     res.status(HttpStatus.OK).json({
       dto: dto,
     });
