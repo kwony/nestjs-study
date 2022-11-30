@@ -5,6 +5,7 @@ import {
   Controller,
   Get,
   HttpStatus,
+  Param,
   Post,
   Query,
   Res,
@@ -44,6 +45,14 @@ export class StudyController {
   createUser(@Body() dto: CreateUserDto, @Res() res: Response) {
     res.status(HttpStatus.OK).json({
       dto: dto,
+    });
+  }
+
+  @Get('one/:id')
+  findOne(@Param('id') id: number, @Res() res: Response) {
+    console.log(id);
+    res.status(HttpStatus.OK).json({
+      id: id,
     });
   }
 }
