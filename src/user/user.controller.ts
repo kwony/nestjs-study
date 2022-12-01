@@ -15,6 +15,7 @@ import { UserService } from './user.service';
 import { Response } from 'express';
 import { TransformInterceptor } from 'src/transform/transform.interceptor';
 import { User } from './user.entity';
+import { CustomException } from 'src/exception/custom.exception';
 
 @Controller('user')
 export class UserController {
@@ -60,6 +61,7 @@ export class UserController {
 
   @Get('/error')
   async error() {
+    throw new CustomException('hello error');
     throw new ForbiddenException();
   }
 }
