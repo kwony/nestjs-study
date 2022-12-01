@@ -11,7 +11,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { CreateUserDto } from './dto/dtos';
+import { CreateUserDto } from '../user/dtos';
 import { StudyService } from './study.service';
 
 export class StudyDto {

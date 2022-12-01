@@ -4,3 +4,11 @@ export class CreateUserDto {
   @IsNotEmpty()
   name: string;
 }
+
+export class UpdateNameDto {
+  @IsNotEmpty()
+  id: number;
+
+  @IsNotEmpty()
+  name: string;
+}

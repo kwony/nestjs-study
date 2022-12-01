@@ -6,7 +6,8 @@ import { CatsController } from './cats/cats.controller';
 import { CatsService } from './cats/cats.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StudyService } from './study/study.service';
-import { User } from './study/entities/user.entity';
+import { User } from './user/user.entity';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { User } from './study/entities/user.entity';
       logging: true,
       entities: [User],
     }),
+    UserModule,
   ],
   controllers: [AppController, StudyController, CatsController],
   providers: [AppService, CatsService, StudyService],
